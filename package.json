@@ -1,62 +1,38 @@
 {
-  "name": "mySAPVA",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@sap/cds": "^6",
-    "express": "^4",
-    "hdb": "^0.19.0"
-  },
-  "scripts": {
-    "start": "cds run"
-  },
-  "engines": {
-    "node": "^16.15"
-  },
-  "eslintConfig": {
-    "extends": "eslint:recommended",
-    "env": {
-      "es2020": true,
-      "node": true,
-      "jest": true,
-      "mocha": true
+    "name": "mySAPVA",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/audit-logging": "^5.0.0",
+        "@sap/cds": "^5",
+        "@sap/hana-client": "^2.6.61",
+        "@sap/xsenv": "^3.1.0",
+        "@sap/xssec": "^3.2.0",
+        "express": "^4",
+        "passport": "^0.4.1"
     },
-    "globals": {
-      "SELECT": true,
-      "INSERT": true,
-      "UPDATE": true,
-      "DELETE": true,
-      "CREATE": true,
-      "DROP": true,
-      "CDL": true,
-      "CQL": true,
-      "CXL": true,
-      "cds": true
+    "scripts": {
+        "start": "cds serve srv/csn.json"
     },
-    "rules": {
-      "no-console": "off",
-      "require-atomic-updates": "off"
-    }
-  },
-  "cds": {
-    "build": {
-        "tasks": [
-            {
-                "for": "hana",
-                "dest": "../db"
+    "engines": {
+        "node": "14.X"
+    },
+    "cds": {
+        "build": {
+            "target": "."
+        },
+        "hana": {
+            "deploy-format": "hdbtable"
+        },
+        "requires": {
+            "db": {
+                "kind": "hana"
             },
-            {
-                "for": "node-cf"
+            "uaa": {
+                "kind": "xsuaa"
             }
-        ]
-    },
-    "requires": {
-        "db": {
-            "kind": "hana-cloud"
         }
     }
-}
 }
