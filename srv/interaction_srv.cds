@@ -13,6 +13,4 @@ service CatalogService {
 
 entity SalesYear
     as projection on  interactions.SalesYear;
-
-
 }
